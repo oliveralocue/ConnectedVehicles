@@ -1,0 +1,47 @@
+﻿@using ConnectedVehicles.DTOs
+@using MvcControlsToolkit.Core.Business.Utilities
+@model DataPage<DetailVehicleDTO>
+@{
+    ViewData["Title"] = "Connected Vehicles";
+    string error = ViewData["error"] as string;
+}
+
+<h3>@ViewData["Title"]</h3>
+@if (error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>@error</strong>
+    </div>
+}
+<table class="table table-striped table-bordered
+       table-hover table-condensed">
+    <tbody class="items-container">
+        @foreach (var item in Model.Data)
+        {
+        <tr>
+            <th>Customer</th>
+            <td>@item.Customer</td>
+            <th>Address</th>
+            <td>@item.Address</td>
+        </tr>
+            <tr>
+                <th>Vehicles:</th>
+                @foreach (VehicleDTO v in item.Vehicles)
+                {
+                    
+                    <td>
+                        VIN: @v.Vin <br />
+                        Register#: @v.RegNum<br />
+                        Status: @v.Status<br />
+
+                    </td>
+                }
+            </tr>
+
+
+                
+         }
+        </tbody>
+</table>
+
+
