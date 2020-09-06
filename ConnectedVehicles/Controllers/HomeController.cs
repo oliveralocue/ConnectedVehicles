@@ -33,9 +33,19 @@ namespace ConnectedVehicles.Controllers
             var vm = await repo.GetAllItems();
             return View(vm);
         }
-        public IActionResult Privacy()
+
+        public async Task<IActionResult> Client(string id)
         {
-            return View();
+            try
+            {
+                var vm = await
+                   repo.GetById<DetailVehicleDTO, string>(id);
+                return View(vm);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

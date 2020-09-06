@@ -47,14 +47,7 @@ namespace ConnectedVehicles.Repository
                         .Select(l => new VehicleDTO { })
                 }, m => m.Id
             );
-           /* DeclareProjection
-                (m =>
-                new VehicleDTO
-                {
-
-
-                }, m => m.Vin
-            );*/
+            
             DocumentDBCRUDRepository<Vehicle>
                 .DeclareProjection
                (m =>

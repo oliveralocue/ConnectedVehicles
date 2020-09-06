@@ -20,7 +20,15 @@
         {
         <tr>
             <th>Customer</th>
-            <td>@item.Customer</td>
+            <td>@item.Customer
+            
+                    <a asp-action="Client" asp-controller="Home" 
+                       asp-route-id="@item.Id" 
+                       class="btn btn-xs btn-primary" title="client">
+                        <span class="glyphicon glyphicon-edit">Filter</span>
+                        &nbsp;
+                    </a>
+            </td>
             <th>Address</th>
             <td>@item.Address</td>
         </tr>
