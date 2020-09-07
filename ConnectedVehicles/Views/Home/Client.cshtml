@@ -17,6 +17,7 @@
         <strong>@error</strong>
     </div>
 }
+
 <div asp-validation-summary="All" class="text-danger"></div>
 <div class="row">
     <div class="col-12">
@@ -28,9 +29,9 @@
             <div class="col-12">
                 @Model.Customer.ToString();
             </div>
-</div>
+        </div>
     </div>
-    
+
     <div class="col-12">
         <div class="form-group">
             <b>
@@ -55,7 +56,7 @@
     </thead>
     <tbody class="items-container">
         <tr style="display:none">
-            
+
             <td>
                 Vin
             </td>
@@ -87,31 +88,5 @@
         }
     </tbody>
 </table>
-@section Scripts {
-    <script type="text/javascript">
-    (function ($) {
-        var addCount = 0;
-        var template = $(".items-container")
-            .children().first().detach();
-        $(document).on("click", ".delete-button", function (evt) {
-            $(evt.target).closest("tr").remove();
-        });
-        $(document).on("click", ".add-button", function (evt) {
-            addCount++;
-            var index = "_" + addCount;
-            var prefix = "SubItems[" + index + "].";
-            var item = template.clone();
-            item.find(".binding-index").val(index);
-            $(".items-container").append(item);
-            item.find("input").not(".binding-index")
-                .each(function () {
-                    input = $(this);
-                    input.attr("name", prefix + input.attr("name"))
-                });
 
-            item.show();
-        });
-    })(jQuery);
-    </script>
-}
 

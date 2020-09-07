@@ -17,8 +17,4 @@
     <PackageReference Include="MvcControlsToolkit.Business.DocumentDB" Version="2.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Item\" />
-  </ItemGroup>
-
 </Project>
