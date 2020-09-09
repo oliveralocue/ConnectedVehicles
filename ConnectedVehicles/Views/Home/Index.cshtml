@@ -18,6 +18,8 @@
     <label text="Filter by Customer"
             class="col-xs-12 control-label">Filter by Customer</label>
     <div class="form-group">
+        @Model.Data.Count()
+        
         @foreach (var item in Model.Data)
         {
             <a asp-action="Client" asp-controller="Home"
@@ -36,6 +38,7 @@
         @foreach (var item in Model.Data)
         {
             <tr>
+                
                 <th>Customer</th>
                 <td>
                     @item.Customer

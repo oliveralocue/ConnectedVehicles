@@ -33,7 +33,7 @@ namespace ConnectedVehicles.Repository
 
                     Vehicles = m.Vehicles
                         .Select(l => new VehicleDTO { })
-                }, m => m.Id
+                }, m => m.Customer
             );
             DeclareProjection
                 (m =>
@@ -50,7 +50,7 @@ namespace ConnectedVehicles.Repository
         {
             var vm = await GetPage<DetailVehicleDTO>
                 (null,
-                 x => x.OrderBy(m => m.Id),
+                 x => x.OrderBy(m => m.Customer),
                  -1, 100);
             return vm;
         }

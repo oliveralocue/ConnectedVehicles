@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VehiclesWebApp.Models.ConnectedVehicles>
+
+@{
+    ViewData["Title"] = "Connected Vehicles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>Id</th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <th>Customer</th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer)
+                </td>
+                <th>Address</th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
+            <tr>
+                <th>Vehicles:</th>
+            </tr>
+            @foreach (Vehicle v in item.Vehicles)
+            {
+                <tr>
+                    <td>
+                        VIN: @v.Vin
+                    </td>
+                    <td>
+                        Register#: @v.RegNum
+                    </td>
+                    <td>
+                        Status: @v.Status
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+</table>
