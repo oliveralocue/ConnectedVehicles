@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ConnectedVehicles.Data;
 using ConnectedVehicles.DTOs;
 using ConnectedVehicles.Models.CosmosDB;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using MvcControlsToolkit.Business.DocumentDB;
 using MvcControlsToolkit.Core.Business.Utilities;
 
@@ -14,26 +15,13 @@ namespace ConnectedVehicles.Repository
 {
     public class VehiclesRepository: DocumentDBCRUDRepository<ConnectedVehicleItem>
     {
-        /*private string loggedUser;
-        public VehiclesRepository(
-            IDocumentDBConnection connection,
-            string userName
-            ) : base(connection,
-                CosmosDBDefinitions.ConnectedVehiclesId,
-                m => m.Customer == userName
-                )
-        {
-            loggedUser = userName;
-        }
-        */
-        private string loggedUser;
         public VehiclesRepository(
             IDocumentDBConnection connection
             
             ) : base(connection,
                 CosmosDBDefinitions.ConnectedVehiclesId)
         {
-            loggedUser = "";
+            
         }
 
         static VehiclesRepository()
@@ -45,42 +33,30 @@ namespace ConnectedVehicles.Repository
 
                     Vehicles = m.Vehicles
                         .Select(l => new VehicleDTO { })
-                }, m => m.Id
+                }, m => m.Customer
             );
-           /* DeclareProjection
+            DeclareProjection
                 (m =>
                 new VehicleDTO
                 {
 
 
                 }, m => m.Vin
-            );*/
-            DocumentDBCRUDRepository<Vehicle>
-                .DeclareProjection
-               (m =>
-                new VehicleDTO
-                {
-
-
-                }, m => m.Vin
             );
+
+
         }
         public async Task<DataPage<DetailVehicleDTO>> GetAllItems()
         {
             var vm = await GetPage<DetailVehicleDTO>
                 (null,
-                 x => x.OrderBy(m => m.Id),
+                 x => x.OrderBy(m => m.Customer),
                  -1, 100);
             return vm;
         }
 
-        public async Task<IList<VehicleDTO>> AllSubItems()
-        {
-            var query = Table(100)
-                .Where(SelectFilter)
-                .SelectMany(m => m.Vehicles);
-            return await ToList<VehicleDTO,Vehicle>(query);
-        }
+        
+
 
     }
 }

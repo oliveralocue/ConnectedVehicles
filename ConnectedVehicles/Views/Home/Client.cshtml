@@ -1,0 +1,92 @@
+﻿@using ConnectedVehicles.DTOs
+@model DetailVehicleDTO
+@{
+    ViewData["Title"] = "Client - " + Model.Customer.ToString();
+    string error = ViewData["error"] as string;
+    List<VehicleDTO> SubItems = null;
+    if (Model != null && Model.Vehicles != null)
+    {
+        SubItems = Model.Vehicles.ToList();
+    }
+}
+
+<h3>@ViewData["Title"]</h3>
+@if (error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>@error</strong>
+    </div>
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <b>
+                <label asp-for="Customer"
+                       class="col-xs-12 control-label"></label>
+            </b>
+            <div class="col-12">
+                @Model.Customer.ToString();
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-group">
+            <b>
+                <label asp-for="Address"
+                       class="col-xs-12 control-label"></label>
+            </b>
+            <div class="col-12">
+                @Model.Address.ToString();
+            </div>
+        </div>
+    </div>
+</div>
+<h4>Vehicles</h4>
+<table class="table table-striped table-bordered
+       table-hover table-condensed">
+    <thead>
+        <tr class="info">
+            <th>VIN</th>
+            <th>Register Number</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody class="items-container">
+        <tr style="display:none">
+
+            <td>
+                Vin
+            </td>
+            <td>
+                RegNum
+            </td>
+            <td>
+                Status
+            </td>
+        </tr>
+        @if (Model != null && Model.Vehicles != null)
+        {
+            for (int i = 0; i < Model.Vehicles.Count(); i++)
+            {
+                <tr>
+
+                    <td>
+                        @SubItems[i].Vin
+                    </td>
+                    <td>
+                        @SubItems[i].RegNum
+                    </td>
+                    <td>
+                        @SubItems[i].Status
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+
