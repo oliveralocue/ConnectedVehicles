@@ -1,51 +1,181 @@
 ﻿@model IEnumerable<VehiclesWebApp.Models.ConnectedVehicles>
 
 @{
-    ViewData["Title"] = "Connected Vehicles";
+
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Connected Vehicles</h1>
+<br />
+<a href="#" onclick="toggle_visibility('filClient','filStatus')">Filter by Client</a> &nbsp; <b>|</b> &nbsp;
+<a href="#" onclick="toggle_visibility('filStatus','filClient')">Filter by Status</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div id="filClient">
+    <br />
+    <h3>Filter by Client</h3>
+
+    <div class="flex-column">
+        <select id="ClientSelect" onchange="cSelect()">
+            <option value="AB">All</option>
+            <option value="Kalles Grustransporter AB">Kalles Grustransporter AB</option>
+            <option value="Johans Bulk AB">Johans Bulk AB</option>
+            <option value="Haralds Värdetransporter AB">Haralds Värdetransporter AB</option>
+        </select>
+    </div>
+    <br />
+    <table id="clientTable">
+        <tbody>
             <tr>
-                <th>Id</th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
                 <th>Customer</th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Customer)
-                </td>
-                <th>Address</th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
+                <th>Status</th>
+                <th>VIN</th>
+                <th>RegNum</th>
             </tr>
-            <tr>
-                <th>Vehicles:</th>
-            </tr>
-            @foreach (Vehicle v in item.Vehicles)
+            @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        VIN: @v.Vin
-                    </td>
-                    <td>
-                        Register#: @v.RegNum
-                    </td>
-                    <td>
-                        Status: @v.Status
-                    </td>
-                </tr>
+                @foreach (Vehicle v in item.Vehicles)
+                {
+                    <tr>
+                        <td>
+                            <label id="Customer">@item.Customer</label>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <label id="Status">@v.Status</label>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <label id="VIN">@v.Vin</label>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <label id="RegNum">@v.RegNum</label>
+                            &nbsp;
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="filStatus">
+    <br />
+    <h3>Filter by Status</h3>
+
+    <div class="flex-column">
+        <select id="mySelect" onchange="myFunction()">
+            <option value="Connected">All</option>
+            <option value="Vehicle Connected">Connected</option>
+            <option value="Vehicle Disconnected">Disconnected</option>
+        </select>
+    </div>
+    <br />
+    <table id="statusTable">
+        <tbody>
+            <tr>
+                <th>Status</th>
+                <th>VIN</th>
+                <th>RegNum</th>
+                <th>Customer</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                @foreach (Vehicle v in item.Vehicles)
+                {
+                    <tr>
+
+                        <td>
+                            <label id="Status">@v.Status</label>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <label id="VIN">@v.Vin</label>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <label id="RegNum">@v.RegNum</label>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <label id="Customer">@item.Customer</label>
+                            &nbsp;
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('filStatus').style.display = 'none';
+        };
+        function toggle_visibility(id, ded) {
+            var e = document.getElementById(id);
+            var hid = document.getElementById(ded);
+            if (e.style.display == 'block') {
+                e.style.display = 'none';
+                hid.style.display == 'block';
+            }
+            else {
+                e.style.display = 'block';
+                hid.style.display = 'none';
             }
         }
-        </tbody>
-</table>
+
+        function myFunction() {
+            //location.reload();
+            var filter, table, tr, td, i, txtValue, input;
+            input = document.getElementById("mySelect").value;
+            filter = input.toUpperCase();
+            table = document.getElementById("statusTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+
+                    } else {
+                        tr[i].style.display = "none";
+
+                    }
+                }
+            }
+        }
+        function cSelect() {
+            //location.reload();
+            var filter, table, tr, td, i, txtValue, input;
+            input = document.getElementById("ClientSelect").value;
+            filter = input.toUpperCase();
+            table = document.getElementById("clientTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+
+                    } else {
+                        tr[i].style.display = "none";
+
+                    }
+                }
+            }
+        }
+
+    </script>
+}

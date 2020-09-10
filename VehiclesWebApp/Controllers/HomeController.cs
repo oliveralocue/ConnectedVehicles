@@ -23,6 +23,11 @@ namespace VehiclesWebApp.Controllers
             return View();
         }
 
+        public IActionResult AllStatus()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
