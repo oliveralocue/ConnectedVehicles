@@ -6,7 +6,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["VehiclesWebApp/VehiclesWebApp.csproj", "VehiclesWebApp/"]
+COPY . VehiclesWebApp/
 RUN dotnet restore "VehiclesWebApp/VehiclesWebApp.csproj"
 COPY . .
 WORKDIR "/src/VehiclesWebApp"
