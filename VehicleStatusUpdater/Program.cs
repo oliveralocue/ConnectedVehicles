@@ -105,12 +105,12 @@ namespace VehicleStatusUpdater
                     // Vehicle Status Update based on Remainder op result
                     if (mod == 1)
                     {
-                        veh.Status = "Disconnected";
+                        veh.Status = "Vehicle Disconnected";
 
                     }
                     else
                     {
-                        veh.Status = "Connected";
+                        veh.Status = "Vehicle Connected";
                     }
                     
                     Console.WriteLine("VIN: {0} \t RegNum: {1}\t Status: {2}\t", veh.Vin, veh.RegNum, veh.Status);

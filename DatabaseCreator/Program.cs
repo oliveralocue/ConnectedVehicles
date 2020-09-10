@@ -42,7 +42,7 @@ namespace DatabaseCreator
             finally
             {
                 Console.WriteLine("Connected to Database");
-                Console.ReadKey();
+                
             }
         }
 

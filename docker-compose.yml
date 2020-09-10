@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  vehicleswebapp:
+    image: ${DOCKER_REGISTRY-}vehicleswebapp
+    build:
+      context: .
+      dockerfile: VehiclesWebApp/Dockerfile
+
+  databasecreator:
+    image: ${DOCKER_REGISTRY-}databasecreator
+    build:
+      context: .
+      dockerfile: DatabaseCreator/Dockerfile
+
+
+  vehiclestatusupdater:
+    image: ${DOCKER_REGISTRY-}vehiclestatusupdater
+    build:
+      context: .
+      dockerfile: VehicleStatusUpdater/Dockerfile
+

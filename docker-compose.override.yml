@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  vehicleswebapp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+  databasecreator:
+
+
+  vehiclestatusupdater:
+

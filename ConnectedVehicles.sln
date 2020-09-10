@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleStatusUpdater", "Veh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseCreator", "DatabaseCreator\DatabaseCreator.csproj", "{94FC9ABF-C955-44A4-B6EF-002060A15450}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesWebApp", "VehiclesWebApp\VehiclesWebApp.csproj", "{499767DA-64C5-4CF4-8154-9177B6A91B2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesWebApp", "VehiclesWebApp\VehiclesWebApp.csproj", "{499767DA-64C5-4CF4-8154-9177B6A91B2B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3AC7083A-20A6-4876-ABF9-3A2C0F6D4F28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{499767DA-64C5-4CF4-8154-9177B6A91B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{499767DA-64C5-4CF4-8154-9177B6A91B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{499767DA-64C5-4CF4-8154-9177B6A91B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC7083A-20A6-4876-ABF9-3A2C0F6D4F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC7083A-20A6-4876-ABF9-3A2C0F6D4F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC7083A-20A6-4876-ABF9-3A2C0F6D4F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC7083A-20A6-4876-ABF9-3A2C0F6D4F28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

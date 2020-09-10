@@ -1,0 +1,84 @@
+﻿@model IEnumerable<VehiclesWebApp.Models.ConnectedVehicles>
+
+@{
+
+    ViewData["Title"] = "AllStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>AllStatus</h1>
+
+<div class="flex-column">
+    <select id="mySelect" onchange="myFunction()">
+        <option value="Connected">All</option>
+        <option value="Vehicle Connected">Connected</option>
+        <option value="Vehicle Disconnected">Disconnected</option>
+    </select>
+</div>
+
+<table id="myTable">
+    <tbody>
+        <tr>
+            <th>Status</th>
+            <th>VIN</th>
+            <th>RegNum</th>
+            <th>Customer</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            @foreach (Vehicle v in item.Vehicles)
+            {
+                <tr>
+                    <td>
+                        <label id="Status">@v.Status</label>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <label id="VIN">@v.Vin</label>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <label id="RegNum">@v.RegNum</label>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <label id="Customer">@item.Customer</label>
+                        &nbsp;
+                    </td>
+
+                </tr>
+
+            }
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        function myFunction() {
+            //location.reload();
+            var filter, table, tr, td, i, txtValue, input;
+            input = document.getElementById("mySelect").value;
+            filter = input.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        
+                    } else {
+                        tr[i].style.display = "none";
+                        
+                    }
+                }
+            }
+
+        }
+
+    </script>
+}

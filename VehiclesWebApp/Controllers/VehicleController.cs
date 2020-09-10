@@ -22,6 +22,12 @@ namespace VehiclesWebApp.Controllers
             return View(await _cosmosDbService.GetItemsAsync("SELECT * FROM c"));
         }
 
+        [ActionName("AllStatus")]
+        public async Task<IActionResult> AllStatus()
+        {
+            return View(await _cosmosDbService.GetItemsAsync("SELECT * FROM c"));
+        }
+
         [ActionName("Create")]
         public IActionResult Create()
         {
